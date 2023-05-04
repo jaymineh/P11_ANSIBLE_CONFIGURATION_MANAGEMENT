@@ -133,6 +133,8 @@ ssh-add <path-to-private-key>
   - Ran into another error called `OSError Errno12, Cannot allocate memory`. Found out that this error occurs when the machine running playbook doesn't have enough RAM to perform the action. I resolved the error by setting up swap memory on the Jenkins server.
 
     ![OSError Errno12](oserror.png)
+    
+    *Pasted `/swapfile swap swap defaults 0 0` inside the `fstab` file* 
 
     ![Swap config](swapfile.png)
 
