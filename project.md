@@ -51,7 +51,7 @@ ssh-add <path-to-private-key>
 
 - Within the `inventory` folder, create an inventory file for each environment and name them `dev.yml`, `staging.yml`, `uat.yml` & `prod.yml`.
 
-![Ansible Inventory](inventory.png)
+![Ansible Inventory](images/inventory.png)
 
 - Update the `inventory/dev.yml` file with the code below. This is to declare all the host files ansible would use.
 
@@ -117,30 +117,30 @@ ssh-add <path-to-private-key>
 
 - On your local PC,checkout into the master branch and pull down the latest changes. Jenkins saves all the files to the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` directory on the Jenkins/Ansible server.
 
-![Jenkins Builds](jenkinsbuilds.png)
+![Jenkins Builds](images/jenkinsbuilds.png)
 
 **Step 7 - Run Ansible Test**
 ---
 
 - Change directory into the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` on the Jenkins/Ansible server and run `ansible-playbook -i inventory/dev.yml playbooks/common.yml`
 
-![Ansible First Run](ansible1st.png)
+![Ansible First Run](images/ansible1st.png)
 
   - Had an error where the hosts were unreachable. I was able to resolve this issue by turning on the respective servers, ensuring their services were running ad double-checking the SSH-agent had the pem key in it.
 
-    ![Unreachable Error](unreachable_err.png)
+    ![Unreachable Error](images/unreachable_err.png)
 
   - Ran into another error called `OSError Errno12, Cannot allocate memory`. Found out that this error occurs when the machine running playbook doesn't have enough RAM to perform the action. I resolved the error by setting up swap memory on the Jenkins server.
 
-    ![OSError Errno12](oserror.png)
+    ![OSError Errno12](images/oserror.png)
     
     *Pasted `/swapfile swap swap defaults 0 0` inside the `fstab` file* 
 
-    ![Swap config](swapfile.png)
+    ![Swap config](images/swapfile.png)
 
 - Check if wireshark was successfully installed by running `wireshark --version`
 
-![Wireshark Check](wireshark.png)
+![Wireshark Check](images/wireshark.png)
 
 **Step 8 - Update Ansible Playbook**
 ---
@@ -169,12 +169,12 @@ ssh-add <path-to-private-key>
 
 - Run the `inventory/dev.yml` & `playbooks/common.yml` playbooks.
 
-![Ansible Second Run](ansible2nd.png)
+![Ansible Second Run](images/ansible2nd.png)
 
 - Confirm if the file/folder is created and check the timezone.
 
-![Test Directory](testdir.png)
+![Test Directory](images/testdir.png)
 
-![Timezone](timezone.png)
+![Timezone](images/timezone.png)
 
 **Project 11 Deployed Successfully!**
